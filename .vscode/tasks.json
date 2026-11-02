@@ -1,0 +1,49 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "cmake: configure app",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-B",
+                "build",
+                "-S",
+                "."
+            ],
+            "group": {
+                "kind": "none"
+            },
+            "problemMatcher": [ "$msCompile" ]
+        },
+        {
+            "label": "cmake: build app",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "build"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [ "cmake: configure app" ],
+            "problemMatcher": [ "$msCompile" ]
+        },
+        {
+            "label": "run app",
+            "type": "shell",
+            "command": "./build/widgets_app",
+            "dependsOn": [ "cmake: build app" ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        }
+    ]
+}

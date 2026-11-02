@@ -1,0 +1,37 @@
+{
+    "version": "0.1.0",
+    "inputs": [
+        {
+            "id": "findpid",
+            "type": "command",
+            "command": "shellCommand.execute",
+            "args": {
+                "command": "pgrep widgets_app",
+                "description": "Select PID",
+                "useFirstResult": true,
+            }
+        }
+    ],
+    "configurations": [
+        {
+            "name": "GNU Debugger: Launch Program",
+            "target": "./build/widgets_app",
+            "cwd": "${workspaceRoot}",
+            "type": "gdb",
+            "request": "launch",
+            "preLaunchTask": "cmake: build app",
+            "valuesFormatting": "prettyPrinters"
+        },
+        {
+            "name": "GNU Debugger: Attach to PID",
+            "executable": "${workspaceFolder}/build/widgets_app",
+            "target": "${input:findpid}",
+            "cwd": "${workspaceRoot}",
+            "type": "gdb",
+            "gdbpath": "/home/dmytro/.local/bin/gdb-sudo",
+            "request": "attach",
+            "preLaunchTask": "cmake: build app",
+            "valuesFormatting": "prettyPrinters",
+        }
+    ],
+}
