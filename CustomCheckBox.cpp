@@ -136,17 +136,20 @@ void CustomCheckBox::paintEvent(QPaintEvent *)
   // draw icons
   if (m_state == Checked)
   {
+    // pen setup
     painter.setPen(
       QPen(
         QColor(53, 132, 228),
         2.5,
         Qt::SolidLine,
         Qt::RoundCap));
+    // short downward stroke (left side)
     painter.drawLine(
       boxRect.left() + 3,
       boxRect.center().y(),
       boxRect.center().x() - 1,
       boxRect.bottom() - 3);
+    // long upward stroke (right side)
     painter.drawLine(
       boxRect.center().x() - 1,
       boxRect.bottom() - 3,
@@ -155,12 +158,14 @@ void CustomCheckBox::paintEvent(QPaintEvent *)
   }
   else if (m_state == PartiallyChecked)
   {
+    // pen setup
     painter.setPen(
       QPen(
         QColor(53, 132, 228),
         2.5,
         Qt::SolidLine,
         Qt::RoundCap));
+    // horizontal straight line
     painter.drawLine(
       boxRect.left() + 4,
       boxRect.center().y(),
